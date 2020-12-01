@@ -3,9 +3,9 @@ using Xunit;
 
 namespace BinaryOcean.EFCore5.Tests
 {
-    public class NavLinkMapTest : TestBase
+    public class NavLinkMap : TestBase
     {
-        public NavLinkMapTest()
+        public NavLinkMap()
         {
             Context = GetContext();
 
@@ -20,7 +20,7 @@ namespace BinaryOcean.EFCore5.Tests
         }
 
         [Fact]
-        public void AsExpected()
+        public void LinkedEntities()
         {
             // Add the player and game to the "map"
             PlayerGame.Player = Player;
@@ -34,7 +34,7 @@ namespace BinaryOcean.EFCore5.Tests
         }
 
         [Fact]
-       public void NotExpected()
+       public void AttachedToContext()
         { 
             // Add the map to the context. 
             Context.PlayerGames.Add(PlayerGame);
