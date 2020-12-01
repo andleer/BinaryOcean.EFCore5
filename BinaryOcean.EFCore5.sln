@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryOcean.EFCore5.Library", "BinaryOcean.EFCore5.Library\BinaryOcean.EFCore5.Library.csproj", "{642080CF-E82B-4F56-A05E-382C9340372D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryOcean.EFCore5.Tests", "BinaryOcean.EFCore5.Tests\BinaryOcean.EFCore5.Tests.csproj", "{49206FD0-28D5-4125-BE7F-79C7FB5D1839}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{642080CF-E82B-4F56-A05E-382C9340372D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{642080CF-E82B-4F56-A05E-382C9340372D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{642080CF-E82B-4F56-A05E-382C9340372D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{642080CF-E82B-4F56-A05E-382C9340372D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49206FD0-28D5-4125-BE7F-79C7FB5D1839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49206FD0-28D5-4125-BE7F-79C7FB5D1839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49206FD0-28D5-4125-BE7F-79C7FB5D1839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49206FD0-28D5-4125-BE7F-79C7FB5D1839}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {356CFB23-55D9-44F6-AB0B-1A2EB92CF9DF}
+	EndGlobalSection
+EndGlobal
