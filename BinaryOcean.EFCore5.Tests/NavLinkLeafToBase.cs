@@ -1,9 +1,10 @@
 using BinaryOcean.EFCore5.Library;
+using System;
 using Xunit;
 
 namespace BinaryOcean.EFCore5.Tests
 {
-    public class NavLinkLeafToBase : TestBase
+    public class NavLinkLeafToBase : TestBase, IDisposable
     {
         public NavLinkLeafToBase()
         {
@@ -14,6 +15,11 @@ namespace BinaryOcean.EFCore5.Tests
 
             // Player.Games => Game
             Player.Games.Add(Game);
+        }
+
+        public void Dispose()
+        {
+            Context.Dispose();
         }
 
         [Fact]

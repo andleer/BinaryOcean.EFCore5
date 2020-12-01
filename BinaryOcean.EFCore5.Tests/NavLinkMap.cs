@@ -1,9 +1,10 @@
 using BinaryOcean.EFCore5.Library;
+using System;
 using Xunit;
 
 namespace BinaryOcean.EFCore5.Tests
 {
-    public class NavLinkMap : TestBase
+    public class NavLinkMap : TestBase, IDisposable
     {
         public NavLinkMap()
         {
@@ -17,6 +18,11 @@ namespace BinaryOcean.EFCore5.Tests
                 // Is this the only way to set the payload "role" value?
                 PlayerRole = PlayerRole.Owner
             };
+        }
+
+        public void Dispose()
+        {
+            Context.Dispose();
         }
 
         [Fact]
