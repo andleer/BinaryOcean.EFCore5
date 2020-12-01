@@ -11,8 +11,7 @@ namespace BinaryOcean.EFCore5.Library
         {
             builder
                 .ToTable(nameof(PlayerGame))
-                .ConfigureEntityBase()
-                .HasCheckConstraint($"{PlayerRoleColumnName}_Constraint", $"{GetPlayerRoleConstraint()}");
+                .ConfigureEntityBase();
 
             builder.HasKey(k => new { k.GameId, k.PlayerId, });
 

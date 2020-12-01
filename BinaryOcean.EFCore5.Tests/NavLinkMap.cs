@@ -4,54 +4,48 @@ using Xunit;
 
 namespace BinaryOcean.EFCore5.Tests
 {
-    public class NavLinkMap : TestBase, IDisposable
+    public class NavLinkMap : TestBase
     {
-        public NavLinkMap()
-        {
-            Context = GetContext();
-
-            Player = new Player { Name = "Andrew", };
-            Game = new Game { Name = "Rocket League", };
-
-            PlayerGame = new PlayerGame
-            {
-                // Is this the only way to set the payload "role" value?
-                PlayerRole = PlayerRole.Owner
-            };
-        }
-
-        public void Dispose()
-        {
-            Context.Dispose();
-        }
-
         [Fact]
-        public void LinkedEntities()
+        public void LinkEntities()
         {
-            // Add the player and game to the "map"
-            PlayerGame.Player = Player;
-            PlayerGame.Game = Game;
+            Init(out var player, out var game, out var playerGame);
+
+            playerGame.Player = player;
+            playerGame.Game = game;
+
+            // is this the correct way to add a payload value?
+            playerGame.PlayerRole = PlayerRole.Participant;
 
             // None of "the many to many" relationships are established.
-            Assert.True(Player.Games.Count == 0);
-            Assert.True(Player.PlayerGames.Count == 0);
-            Assert.True(Game.Players.Count == 0);
-            Assert.True(Game.PlayerGames.Count == 0);
+            Assert.True(player.Games.Count == 0);
+            Assert.True(player.PlayerGames.Count == 0);
+            Assert.True(game.Players.Count == 0);
+            Assert.True(game.PlayerGames.Count == 0);
         }
 
         [Fact]
-       public void AttachedToContext()
-        { 
+        public void AttachToContext()
+        {
+            Init(out var player, out var game, out var playerGame);
+
+            playerGame.Player = player;
+            playerGame.Game = game;
+
+            // is this the correct way to add a payload value?
+            playerGame.PlayerRole = PlayerRole.Participant;
+
+            using var Context = GetContext();
+
             // Add the map to the context. 
-            Context.PlayerGames.Add(PlayerGame);
+            Context.PlayerGames.Add(playerGame);
 
             // After the map entity is added to the context,
             // not all relationships are established.
-            Assert.True(Player.Games.Count == 1); // fail
-            Assert.True(Player.PlayerGames.Count == 1); // fail
-
-            Assert.True(Game.Players.Count == 1); // fail
-            Assert.True(Game.PlayerGames.Count == 1); // fail
+            Assert.True(player.Games.Count == 1); // fail
+            Assert.True(player.PlayerGames.Count == 1);
+            Assert.True(game.Players.Count == 1); // fail
+            Assert.True(game.PlayerGames.Count == 1);
         }
     }
 }

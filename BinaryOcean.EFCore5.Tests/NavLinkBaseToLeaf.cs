@@ -4,47 +4,40 @@ using Xunit;
 
 namespace BinaryOcean.EFCore5.Tests
 {
-    public class NavLinkBaseToLeaf : TestBase, IDisposable
+    public class NavLinkBaseToLeaf : TestBase 
     {
-        public NavLinkBaseToLeaf()
-        {
-            Context = GetContext();
-
-            Player = new Player { Name = "Andrew", };
-            Game = new Game { Name = "Rocket League", };
-
-            // Player.Games => Game
-            Player.Games.Add(Game);
-        }
-
-        public void Dispose()
-        {
-            Context.Dispose();
-        }
-
         [Fact]
-        public void LinkedEntities()
+        public void LinkEntities()
         {
+            Init(out var player, out var game);
+
+            player.Games.Add(game);
+
             // Only Player.Games is established.
-            Assert.True(Player.Games.Count == 1);
-            Assert.True(Player.PlayerGames.Count == 0);
-            Assert.True(Game.Players.Count == 0);
-            Assert.True(Game.PlayerGames.Count == 0);
+            Assert.True(player.Games.Count == 1);
+            Assert.True(player.PlayerGames.Count == 0);
+            Assert.True(game.Players.Count == 0);
+            Assert.True(game.PlayerGames.Count == 0);
         }
 
         [Fact]
-        public void AttachedToContext()
+        public void AttachToContext()
         {
+            Init(out var player, out var game);
+            player.Games.Add(game);
+
+            using var context = GetContext();
+        
             // The Player is the "base" of the graph.
-            Context.Players.Add(Player);
+            context.Players.Add(player);
 
             // After the graph base entity is added to the context,
             // all relationships are established.
-            Assert.True(Player.Games.Count == 1);
-            Assert.True(Player.PlayerGames.Count == 1);
+            Assert.True(player.Games.Count == 1);
+            Assert.True(player.PlayerGames.Count == 1);
 
-            Assert.True(Game.Players.Count == 1);
-            Assert.True(Game.PlayerGames.Count == 1);
+            Assert.True(game.Players.Count == 1);
+            Assert.True(game.PlayerGames.Count == 1);
         }
     }
 }

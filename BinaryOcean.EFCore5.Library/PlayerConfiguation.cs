@@ -11,9 +11,6 @@ namespace BinaryOcean.EFCore5.Library
                 .ToTable(nameof(Player))
                 .ConfigureEntityBase();
 
-            builder.Property(e => e.PlayerId).UseIdentityColumn(100);
-            builder.Property(e => e.Name).HasColumnType("varchar(50)").IsRequired();
-
             builder
                 .HasMany(e => e.Games)
                 .WithMany(e => e.Players)
