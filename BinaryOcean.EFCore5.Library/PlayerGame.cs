@@ -2,16 +2,14 @@
 {
     public class PlayerGame : EntityBase
     {
-        public PlayerGame() { }
-
         public int PlayerId { get; set; }
 
         public int GameId { get; set; }
 
         public PlayerRole PlayerRole { get; set; }
 
-        public Player Player { get; set; }
+        public virtual Player Player { get; set; }
 
-        public Game Game { get; set; }
+        public virtual Game Game { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BinaryOcean.EFCore5.Library
 {

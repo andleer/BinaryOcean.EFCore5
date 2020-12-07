@@ -1,13 +1,11 @@
-# BinaryOcean.EFCore5
+# BinaryOcean.EFCore5: Many to Many Questions
 
-A simple setup with some tests to validate assumptions that I have around many to many. Assuming my code is wrong but the results seem a bit inconsistant.
+This repo contains a simple setup with some tests to validate and debug assumptions that I have around the new EF Core 5 many to many relationships. You guys are the experts so I will assume my code is wrong but at the least, the results seem a bit inconsistant.
 
-The code is largely stripped down to simplfy structure and tests. The original application uses MS SQL Server but I observed identical test results against the EF in memory database so that seemed like the way to go.
+The code is largely stripped down to simplfy structure and tests. The original application uses MS SQL Server but I observed identical test results against the EF in memory database so that seemed like the way to go for this test repo.
 
-Issues that I am hoping to resolve:
+## Issues that I am hoping to resolve or beter understand:
 
-1.   Simple navigation linking 1:n seems to work as expected. When linking one many to many entity to the other, only a single, one way link is established. After adding the entities to the Context, the full linking is exspected to be established but this is not always the case.
+I have devined a model that has 3 real entities. `Player`, `Game` and a mapping table `PlayerGame`. The PlayerGame table includes a payload item named `PlayerRole`.
 
-1.  How does the new many to many functionality work with regards to the mapping table vs simple navigation linking? Should one establish links on the other after an entity is added to the Context?
-
-1.  What is the best way to add playload values? It seem that the only approach here is to fall back and use the old style mapping table. That is still a win since the simple navigation 1:n links are useful and much improved when querying data but it would be nice to have an automatically generated mapping entity and somehow gain access to that.
+[Entity Source](EntitySource.md)

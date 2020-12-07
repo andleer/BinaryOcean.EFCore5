@@ -14,8 +14,8 @@ namespace BinaryOcean.EFCore5.Library
 
         public string Name { get; set; }
 
-        public ICollection<Game> Games { get; }
+        public virtual ICollection<Game> Games { get; }
 
-        public ICollection<PlayerGame> PlayerGames { get; }
+        public virtual ICollection<PlayerGame> PlayerGames { get; }
     }
 }
