@@ -1,10 +1,11 @@
 using BinaryOcean.EFCore5.Library;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace BinaryOcean.EFCore5.Tests
 {
-    public class NavLinkMap : TestBase
+    public class NavLinkMapReload : TestBase
     {
         [Fact]
         public void LinkEntities()
@@ -40,6 +41,9 @@ namespace BinaryOcean.EFCore5.Tests
             // Add the map to the context. 
             Context.PlayerGames.Add(playerGame);
             Context.SaveChanges();
+
+            player = Context.Players.Single();
+            game = Context.Games.Single();
 
             // After the map entity is added to the context,
             // not all relationships are established.
