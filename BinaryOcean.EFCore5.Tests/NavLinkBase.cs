@@ -33,10 +33,6 @@ namespace BinaryOcean.EFCore5.Tests
             context.Players.Add(player);
             context.SaveChanges();
 
-            // After the graph base entity is added to the context,
-            // All relationships are established.
-            // This seems reasonable.
-
             Assert.Equal(1, player.Games.Count);
             Assert.Equal(1, player.PlayerGames.Count);
 

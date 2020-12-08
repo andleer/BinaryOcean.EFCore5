@@ -34,15 +34,11 @@ namespace BinaryOcean.EFCore5.Tests
             context.Games.Add(game);
             context.SaveChanges();
 
-            // After the leaf entity is added to the context,
-            // not all relationships are established.
-            // I don't think this is correct.
-            // The tests fails.
             Assert.Equal(1, player.Games.Count);
-            Assert.Equal(1, player.PlayerGames.Count); // fail
+            Assert.Equal(1, player.PlayerGames.Count); 
 
-            Assert.Equal(1, game.Players.Count); // fail
-            Assert.Equal(1, game.PlayerGames.Count); // fail
+            Assert.Equal(1, game.Players.Count);  
+            Assert.Equal(1, game.PlayerGames.Count);  
 
             Assert.Equal(1, context.PlayerGames.Count());
         }
