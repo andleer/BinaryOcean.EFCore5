@@ -45,11 +45,9 @@ namespace BinaryOcean.EFCore5.Tests
             player = Context.Players.Single();
             game = Context.Games.Single();
 
-            // After the map entity is added to the context,
-            // not all relationships are established.
-            Assert.Equal(1, player.Games.Count); // fail
+            Assert.Equal(1, player.Games.Count); 
             Assert.Equal(1, player.PlayerGames.Count);
-            Assert.Equal(1, game.Players.Count); // fail
+            Assert.Equal(1, game.Players.Count); 
             Assert.Equal(1, game.PlayerGames.Count);
         }
     }

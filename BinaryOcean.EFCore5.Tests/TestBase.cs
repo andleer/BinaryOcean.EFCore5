@@ -10,7 +10,8 @@ namespace BinaryOcean.EFCore5.Tests
         protected Context GetContext()
         {
             var builder = new DbContextOptionsBuilder<Context>()
-               .UseInMemoryDatabase("test");
+               .UseInMemoryDatabase("test")
+               ;
 
             return new Context(builder.Options);
         }
