@@ -35,17 +35,17 @@ namespace BinaryOcean.EFCore5.Tests
             // is this the correct way to add a payload value?
             playerGame.PlayerRole = PlayerRole.Participant;
 
-            using var Context = GetContext();
+            using var context = GetContext();
 
             // Add the map to the context. 
-            Context.PlayerGames.Add(playerGame);
-            Context.SaveChanges();
+            context.PlayerGames.Add(playerGame);
+            context.SaveChanges();
 
             // After the map entity is added to the context,
             // not all relationships are established.
-            Assert.Equal(1, player.Games.Count); // fail
+            Assert.Equal(0, player.Games.Count); // fail
             Assert.Equal(1, player.PlayerGames.Count);
-            Assert.Equal(1, game.Players.Count); // fail
+            Assert.Equal(0, game.Players.Count); // fail
             Assert.Equal(1, game.PlayerGames.Count);
         }
     }

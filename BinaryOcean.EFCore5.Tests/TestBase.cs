@@ -5,15 +5,14 @@ namespace BinaryOcean.EFCore5.Tests
 {
     public abstract class TestBase
     {
-        public TestBase() { }
-
         protected Context GetContext()
         {
-            var builder = new DbContextOptionsBuilder<Context>()
-               .UseInMemoryDatabase("test")
-               ;
+            var builder = new DbContextOptionsBuilder<Context>().UseInMemoryDatabase("test");
 
-            return new Context(builder.Options);
+            var context = new Context(builder.Options);
+            context.Database.EnsureDeleted();
+
+            return context;
         }
 
         protected void Init(out Player player, out Game game, out PlayerGame playerGame)
