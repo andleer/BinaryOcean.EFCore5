@@ -5,8 +5,8 @@ The new EF Core 5.0 now supports direct many to many navigation. Great stuff! I 
 My code contains three entities: `Player`, `Game` and `PlayerGame`. The latter being a simple mapping table between the `Player` and the `Game` entities.
 
 1. The two unit tests document similar functionality on the three entities.
-    1. `ManyToManyLink` connects the object graph using the new style many to many functionality that automatically connect the two entities via the defined mapping table. I make the connection in a single directipon. It works fine and correctly establishes the mapping table entry. 
-    1. `MapLink` directly connects the object graph by referencing the `Player` and `Game` entities in the `PlayerGame` mapping entity. I was expecting the `Player` and `Game` many to many collections to be populated but they are not. EF Core bug? Issue in my code?
+   - `ManyToManyLink` connects the object graph using the new style many to many functionality that automatically connect the two entities via the defined mapping table. I make the connection in a single directipon. It works fine and correctly establishes the mapping table entry. 
+    - `MapLink` directly connects the object graph by referencing the `Player` and `Game` entities in the `PlayerGame` mapping entity. I was expecting the `Player` and `Game` many to many collections to be populated but they are not. EF Core bug? Issue in my code?
 
 1. I am still confused by the best approach to populating the "payload" on the mapping entity? In my case I have a `PlayerRole` enumeration that needs to be set. Fundamentally I am stuck around this. If I use the second approach above so that I can directly set the payload on the mapping entity/table record, my code fails for the reasons described in the first case. If I connect the graph using either the `Player.Games` or the `Game.Players` many to many collections, I don't have access to the payload and I would assume `SaveChanges()` fails when writing to SQL with a constraint on the payload column.
 
