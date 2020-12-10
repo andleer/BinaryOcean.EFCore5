@@ -12,7 +12,7 @@ My code contains three entities: `Player`, `Game` and `PlayerGame`. The latter b
 
 Thoughts?
 
-## Other items:
+## Other Items:
 
 1. The `OnModelCreating ApplyConfigurationsFromAssembly` method is simply amazing. I have resisted using the fluent API preferring instead to use attributes but I can see the writing on the wall with that approach. You can't define a compound key with attributes. I went all in on the fluent API. The resulting pattern is really clean. I like having a single "configuration" class for each of my entities and the `IEntityTypeConfiguration<T>` interface makes that all possible. I also think the `EntityBase` and `ConfigureEntityBase()` method I came up with work pretty well when you have common properties across a wide range of entities. I wonder if there are other similar implementations or possible improvements that can be made?
 
