@@ -9,7 +9,7 @@ namespace BinaryOcean.EFCore5.Tests
     {
         private Player Player = new Player { Name = "Andrew", };
         private Game Game = new Game { Name = "Rocket League", };
-        //private PlayerGame PlayerGame = new PlayerGame { PlayerRole = PlayerRole.Participant, };
+        
 
         private Context Context;
 
