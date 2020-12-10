@@ -27,51 +27,30 @@ namespace BinaryOcean.EFCore5.Tests
         }
 
         [Fact]
-        public void PlayerHasSingleGames()
-        {
-            Assert.Equal(1, Player.Games.Count); // fail
-        }
+        public void PlayerHasSingleGame() => Assert.Equal(1, Player.Games.Count); // fail
 
         [Fact]
-        public void PlayerHasSinglePlayerGame()
-        {
-            Assert.Equal(1, Player.PlayerGames.Count);
-        }
+        public void GameHasSinglePlayer() => Assert.Equal(1, Game.Players.Count); // fail
 
         [Fact]
-        public void GamesHasSinglePlayers()
-        {
-            Assert.Equal(1, Game.Players.Count); // fail
-        }
+        public void ContextPlayerHasSingleGame() => Assert.Equal(1, Context.Players.Single().Games.Count); // fail
+        
+        [Fact]
+        public void PlayerHasSinglePlayerGame() => Assert.Equal(1, Player.PlayerGames.Count);
 
         [Fact]
-        public void GameHasSinglePlayerGame()
-        {
-            Assert.Equal(1, Game.PlayerGames.Count);
-        }
+        public void GameHasSinglePlayerGame() => Assert.Equal(1, Game.PlayerGames.Count);
 
         [Fact]
-        public void ContextHasSinglePlayerGames()
-        {
-            Assert.Equal(1, Context.PlayerGames.Count());
-        }
+        public void ContextHasSinglePlayer() => Assert.Equal(1, Context.Players.Count());
 
         [Fact]
-        public void ContextHasSinglePlayer()
-        {
-            Assert.Equal(1, Context.Players.Count());
-        }
+        public void ContextHasSingleGame() => Assert.Equal(1, Context.Games.Count());
+
 
         [Fact]
-        public void ContextHasSingleGame()
-        {
-            Assert.Equal(1, Context.Games.Count());
-        }
+        public void ContextHasSinglePlayerGame() => Assert.Equal(1, Context.PlayerGames.Count());
 
-        [Fact]
-        public void ContextPlayerHasSingleGames()
-        {
-            Assert.Equal(1, Context.Players.Single().Games.Count);
-        }
+
     }
 }

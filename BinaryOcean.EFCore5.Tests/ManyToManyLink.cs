@@ -7,63 +7,47 @@ namespace BinaryOcean.EFCore5.Tests
 {
     public class ManyToManyLink
     {
-        private Player player = new Player { Name = "Andrew", };
-        private Game game = new Game { Name = "Rocket League", };
+        private Player Player = new Player { Name = "Andrew", };
+        private Game Game = new Game { Name = "Rocket League", };
+        //private PlayerGame PlayerGame = new PlayerGame { PlayerRole = PlayerRole.Participant, };
 
         private Context Context;
 
         public ManyToManyLink()
         {
-            player.Games.Add(game);
+            Player.Games.Add(Game);
+
 
             var builder = new DbContextOptionsBuilder<Context>().UseInMemoryDatabase(nameof(ManyToManyLink));
             Context = new Context(builder.Options);
             Context.Database.EnsureDeleted();
 
-            Context.Players.Add(player);
+            Context.Players.Add(Player);
             Context.SaveChanges();
         }
 
         [Fact]
-        public void PlayerHasSingleGame()
-        {
-            Assert.Equal(1, player.Games.Count);
-        }
+        public void PlayerHasSingleGame() => Assert.Equal(1, Player.Games.Count);
 
         [Fact]
-        public void PlayerHasSinglePlayerGame()
-        {
-            Assert.Equal(1, player.PlayerGames.Count);
-        }
+        public void GameHasSinglePlayer() => Assert.Equal(1, Game.Players.Count);
 
         [Fact]
-        public void GameHasSinglePLayer()
-        {
-            Assert.Equal(1, game.Players.Count);
-        }
+        public void ContextPlayerHasSingleGame() => Assert.Equal(1, Context.Players.Single().Games.Count); // fail
 
         [Fact]
-        public void GameHasSingPlayerGame()
-        {
-            Assert.Equal(1, game.PlayerGames.Count);
-        }
+        public void PlayerHasSinglePlayerGame() => Assert.Equal(1, Player.PlayerGames.Count);
 
         [Fact]
-        public void ContextHasSinglePlayer()
-        {
-            Assert.Equal(1, Context.Players.Count());
-        }
+        public void GameHasSinglePlayerGame() => Assert.Equal(1, Game.PlayerGames.Count);
 
         [Fact]
-        public void ContextHasSingleGame()
-        {
-            Assert.Equal(1, Context.Games.Count());
-        }
+        public void ContextHasSinglePlayer() => Assert.Equal(1, Context.Players.Count());
 
         [Fact]
-        public void ContextHasSinglePlayerGame()
-        {
-            Assert.Equal(1, Context.PlayerGames.Count());
-        }
+        public void ContextHasSingleGame() => Assert.Equal(1, Context.Games.Count());
+
+        [Fact]
+        public void ContextHasSinglePlayerGame() => Assert.Equal(1, Context.PlayerGames.Count());
     }
 }
